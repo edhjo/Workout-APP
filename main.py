@@ -27,7 +27,6 @@ def salva_progressi(registro):
     with open(DATA_FILE, "w", encoding="utf-8") as f:
         json.dump(progressi, f, indent=4, ensure_ascii=False)
 
-# DATABASE DEI PERSONAGGI (Versione 7 Completa)
 DATABASE = {
     "Videogiochi": {
         "Kratos": {
@@ -447,7 +446,7 @@ DATABASE = {
                     ]
                 },
                 "5 Giorni (Complete Steel Split)": {
-                    "Giorno 1: Spinta d'Acciaio (Petto)": [
+                    "Giorno 1: Spinta d\'Acciaio (Petto)": [
                         {"esercizio": "Panca piana pesante bilanciere", "serie": "5x5", "recupero": "3 min"},
                         {"esercizio": "Panca inclinata con manubri", "serie": "4x8", "recupero": "90 sec"},
                         {"esercizio": "Dip con zavorra", "serie": "4x8", "recupero": "90 sec"},
@@ -607,7 +606,6 @@ DATABASE = {
     }
 }
 
-# INTERFACCIA STREAMLIT PRINCIPALE
 st.title("⚡ CHARACTER GYM TRACKER (Versione Mobile)")
 st.sidebar.header("🎯 SELEZIONE SCHEDA")
 
@@ -616,7 +614,6 @@ personaggio_nome = st.sidebar.selectbox("2. Personaggio / Eroe:", list(DATABASE[
 
 char_data = DATABASE[categoria][personaggio_nome]
 
-# Mostra dettagli fisici
 with st.expander("📊 Dati Fisici & Programma"):
     st.write(f"**Altezza:** {char_data['altezza']}")
     st.write(f"**Peso:** {char_data['peso']}")
@@ -639,8 +636,7 @@ for giorno_titolo, esercizi in scheda_giorni.items():
     for ex in esercizi:
         col1, col2, col3 = st.columns([3, 1, 2])
         with col1:
-            st.markdown(f"**{ex['esercizio']}**
-*(Serie: {ex['serie']} - Rec: {ex['recupero']})*")
+            st.markdown(f"**{ex['esercizio']}**  \n *(Serie: {ex['serie']} - Rec: {ex['recupero']})*")
         with col2:
             peso_usato = st.text_input("Peso (kg)", key=f"{giorno_titolo}_{ex['esercizio']}_peso")
         with col3:
@@ -677,7 +673,6 @@ if st.button("💾 Salva Sessione di Oggi", use_container_width=True):
         salva_progressi(record)
         st.success(f"Allenamento di {personaggio_nome} salvato con successo!")
 
-# Sezione Storico
 st.markdown("---")
 st.subheader("📜 Storico Allenamenti Salvati")
 progressi = carica_progressi()
